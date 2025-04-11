@@ -26,6 +26,7 @@ public class Arquivo {
         try {
             arquivoOrigem.seek(0);
             seekArq(0);
+            truncate(0);
             while (arquivoOrigem.getFilePointer() < arquivoOrigem.length()) {
                 reg.leDoArq(arquivoOrigem);
                 reg.gravaNoArq(this.arquivo);
@@ -885,26 +886,26 @@ public class Arquivo {
             }
         }
     }
-    public void geraArquivoReverso() {
+    public void geraArquivoReverso(int t) {
         Registro novo;
-        for (int i = 1024; i > 0; i--) {
+        for (int i = t; i > 0; i--) {
             novo = new Registro(i);
             novo.gravaNoArq(this.arquivo);
         }
     }
 
-    public void geraArquivoRandomico() {
+    public void geraArquivoRandomico(int t) {
         Registro novo;
         Random random = new Random();
-        for (int i = 0; i < 1024; i++) {
+        for (int i = 0; i < t; i++) {
             novo = new Registro(random.nextInt(1000));
             novo.gravaNoArq(this.arquivo);
         }
     }
 
-    public void geraArquivoOrdenado() {
+    public void geraArquivoOrdenado(int t) {
         Registro novo;
-        for (int i = 0; i < 1024; i++) {
+        for (int i = 0; i < t; i++) {
             novo = new Registro(i);
             novo.gravaNoArq(this.arquivo);
         }

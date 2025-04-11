@@ -95,16 +95,17 @@ public class Principal
         }
         cabecalho();
 
-
+        int Tamanho = 1024;
         arqOrd= new Arquivo("Ordenado.txt");
         arqRand = new Arquivo("Randomico.txt");
         arqRev = new Arquivo("Reverso.txt");
         auxRand = new Arquivo("AuxRand.txt");
         auxRev = new Arquivo("AuxRev.txt");
 
-        arqOrd.geraArquivoOrdenado();
-        arqRev.geraArquivoReverso();
-        arqRand.geraArquivoRandomico();
+        arqOrd.geraArquivoOrdenado(Tamanho);
+        arqRev.geraArquivoReverso(Tamanho);
+        arqRand.geraArquivoRandomico(Tamanho);
+        int TL = arqOrd.filesize();
 //.. Insercao Direta ...
         gravaNomeMetodo("Insercao Direta");
 //Arquivo Ordenado
@@ -116,7 +117,7 @@ public class Principal
         compO=arqOrd.getComp();
         movO=arqOrd.getMov();
         ttotalO=tfim-tini;
-        gravaLinhaTabela(compO,1024-1,movO,3*(1024-1),(int)(ttotalO/1000),false);
+        gravaLinhaTabela(compO,TL-1,movO,3*(TL-1),(int)(ttotalO/1000),false);
 //Arquivo Reverso
         auxRev.copiaArquivo(arqRev.getFile()); //faz uma cópia do arquivo de arqRev
 //para auxRev para preservar o original
@@ -128,7 +129,7 @@ public class Principal
         ttotalRev=tfim-tini;
         compRev=auxRev.getComp();
         movRev= auxRev.getMov();
-        gravaLinhaTabela(compRev,(1024*1024 -4)/4,movRev,(1024*1024+3*1024-4)/2,(int)(ttotalRev/1000),false);
+        gravaLinhaTabela(compRev,(TL*TL -4)/4,movRev,(TL*TL+3*TL-4)/2,(int)(ttotalRev/1000),false);
 //Arquivo Randomico
         auxRand.copiaArquivo(arqRand.getFile()); //faz uma cópia do arquivo de arqRand
 //para auxRand para preservar o original
@@ -140,7 +141,7 @@ public class Principal
         ttotalRand=tfim-tini;
         compRand=auxRand.getComp();
         movRand=auxRand.getMov();
-        gravaLinhaTabela(compRand,(1024*1024+1024-4)/4,movRand,(1024*1024+3*1024)/2,(int)(ttotalRand/1000),true);
+        gravaLinhaTabela(compRand,(TL*TL+TL-4)/4,movRand,(TL*TL+3*TL)/2,(int)(ttotalRand/1000),true);
 
 
         //INSERCAO BINARIA
@@ -154,7 +155,7 @@ public class Principal
         compO=arqOrd.getComp();
         movO=arqOrd.getMov();
         ttotalO=tfim-tini;
-        gravaLinhaTabela(compO,1024*((int)(Math.log(1024)-Math.log(Math.E)+0.5)),movO,3*(1024-1),(int)(ttotalO/1000),false);
+        gravaLinhaTabela(compO,TL*((int)(Math.log(TL)-Math.log(Math.E)+0.5)),movO,3*(TL-1),(int)(ttotalO/1000),false);
 //Arquivo Reverso
         auxRev.copiaArquivo(arqRev.getFile()); //faz uma cópia do arquivo de arqRev
 //para auxRev para preservar o original
@@ -166,7 +167,7 @@ public class Principal
         ttotalRev=tfim-tini;
         compRev=auxRev.getComp();
         movRev= auxRev.getMov();
-        gravaLinhaTabela(compRev,1024*((int)(Math.log(1024)-Math.log(Math.E)+0.5)),movRev,(1024*1024+3*1024-4)/2,(int)(ttotalRev/1000),false);
+        gravaLinhaTabela(compRev,TL*((int)(Math.log(TL)-Math.log(Math.E)+0.5)),movRev,(TL*TL+3*TL-4)/2,(int)(ttotalRev/1000),false);
 //Arquivo Randomico
         auxRand.copiaArquivo(arqRand.getFile()); //faz uma cópia do arquivo de arqRand
 //para auxRand para preservar o original
@@ -178,7 +179,7 @@ public class Principal
         ttotalRand=tfim-tini;
         compRand=auxRand.getComp();
         movRand=auxRand.getMov();
-        gravaLinhaTabela(compRand,1024*((int)(Math.log(1024)-Math.log(Math.E)+0.5)),movRand,(1024*1024+3*1024)/2,(int)(ttotalRand/1000),true);
+        gravaLinhaTabela(compRand,TL*((int)(Math.log(TL)-Math.log(Math.E)+0.5)),movRand,(TL*TL+3*TL)/2,(int)(ttotalRand/1000),true);
 
 
         //SELECAO DIRETA
@@ -192,7 +193,7 @@ public class Principal
         compO=arqOrd.getComp();
         movO=arqOrd.getMov();
         ttotalO=tfim-tini;
-        gravaLinhaTabela(compO,(1024*1024-1024)/2,movO,3*(1024-1),(int)(ttotalO/1000),false);
+        gravaLinhaTabela(compO,(TL*TL-TL)/2,movO,3*(TL-1),(int)(ttotalO/1000),false);
 //Arquivo Reverso
         auxRev.copiaArquivo(arqRev.getFile()); //faz uma cópia do arquivo de arqRev
 //para auxRev para preservar o original
@@ -204,7 +205,7 @@ public class Principal
         ttotalRev=tfim-tini;
         compRev=auxRev.getComp();
         movRev= auxRev.getMov();
-        gravaLinhaTabela(compRev,(1024*1024-1024)/2,movRev,(1024*1024)/4+3*(1024-1),(int)(ttotalRev/1000),false);
+        gravaLinhaTabela(compRev,(TL*TL-TL)/2,movRev,(TL*TL)/4+3*(TL-1),(int)(ttotalRev/1000),false);
 //Arquivo Randomico
         auxRand.copiaArquivo(arqRand.getFile()); //faz uma cópia do arquivo de arqRand
 //para auxRand para preservar o original
@@ -216,7 +217,7 @@ public class Principal
         ttotalRand=tfim-tini;
         compRand=auxRand.getComp();
         movRand=auxRand.getMov();
-        gravaLinhaTabela(compRand,(1024*1024-1024)/2,movRand,1024*((int)((Math.log(1024)+0.577216))),(int)(ttotalRand/1000),true);
+        gravaLinhaTabela(compRand,(TL*TL-TL)/2,movRand,TL*((int)((Math.log(TL)+0.577216))),(int)(ttotalRand/1000),true);
 
         //BOLHA
         gravaNomeMetodo("Bolha");
@@ -229,7 +230,7 @@ public class Principal
         compO=arqOrd.getComp();
         movO=arqOrd.getMov();
         ttotalO=tfim-tini;
-        gravaLinhaTabela(compO,(1024*1024-1024)/2,movO,0,(int)(ttotalO/1000),false);
+        gravaLinhaTabela(compO,(TL*TL-TL)/2,movO,0,(int)(ttotalO/1000),false);
 //Arquivo Reverso
         auxRev.copiaArquivo(arqRev.getFile()); //faz uma cópia do arquivo de arqRev
 //para auxRev para preservar o original
@@ -241,7 +242,7 @@ public class Principal
         ttotalRev=tfim-tini;
         compRev=auxRev.getComp();
         movRev= auxRev.getMov();
-        gravaLinhaTabela(compRev,(1024*1024-1024)/2,movRev,3*(1024*1024-1024)/4,(int)(ttotalRev/1000),false);
+        gravaLinhaTabela(compRev,(TL*TL-TL)/2,movRev,3*(TL*TL-TL)/4,(int)(ttotalRev/1000),false);
 //Arquivo Randomico
         auxRand.copiaArquivo(arqRand.getFile()); //faz uma cópia do arquivo de arqRand
 //para auxRand para preservar o original
@@ -253,7 +254,7 @@ public class Principal
         ttotalRand=tfim-tini;
         compRand=auxRand.getComp();
         movRand=auxRand.getMov();
-        gravaLinhaTabela(compRand,(1024*1024-1024)/2,movRand,3*(1024*1024-1024)/2,(int)(ttotalRand/1000),true);
+        gravaLinhaTabela(compRand,(TL*TL-TL)/2,movRand,3*(TL*TL-TL)/2,(int)(ttotalRand/1000),true);
 
 
         //SHAKE
@@ -267,7 +268,7 @@ public class Principal
         compO=arqOrd.getComp();
         movO=arqOrd.getMov();
         ttotalO=tfim-tini;
-        gravaLinhaTabela(compO,(1024*1024-1024)/2,movO,0,(int)(ttotalO/1000),false);
+        gravaLinhaTabela(compO,(TL*TL-TL)/2,movO,0,(int)(ttotalO/1000),false);
 //Arquivo Reverso
         auxRev.copiaArquivo(arqRev.getFile()); //faz uma cópia do arquivo de arqRev
 //para auxRev para preservar o original
@@ -279,7 +280,7 @@ public class Principal
         ttotalRev=tfim-tini;
         compRev=auxRev.getComp();
         movRev= auxRev.getMov();
-        gravaLinhaTabela(compRev,(1024*1024-1024)/2,movRev,3*(1024*1024-1024)/4,(int)(ttotalRev/1000),false);
+        gravaLinhaTabela(compRev,(TL*TL-TL)/2,movRev,3*(TL*TL-TL)/4,(int)(ttotalRev/1000),false);
 //Arquivo Randomico
         auxRand.copiaArquivo(arqRand.getFile()); //faz uma cópia do arquivo de arqRand
 //para auxRand para preservar o original
@@ -291,7 +292,7 @@ public class Principal
         ttotalRand=tfim-tini;
         compRand=auxRand.getComp();
         movRand=auxRand.getMov();
-        gravaLinhaTabela(compRand,(1024*1024-1024)/2,movRand,3*(1024*1024-1024)/2,(int)(ttotalRand/1000),true);
+        gravaLinhaTabela(compRand,(TL*TL-TL)/2,movRand,3*(TL*TL-TL)/2,(int)(ttotalRand/1000),true);
 
 
         //SHELL
